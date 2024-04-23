@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jobs</title>
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <nav class="nav_container">
+      <div class="topnav" id="topnav">
+        <a href="./index.html">
+          <img src="images/nav_image.png" alt="" width="346px" />
+        </a>
+        <div class="nav_text_container">
+          <a href="./index.html">ვაკანსიის განთავსება</a>
+          <a href="#"> აკადემია</a>
+          <a href="log_in.html" class="log_in">შესვლა</a>
+        </div>
+      </div>
+    </nav>
+    <header>
+      <h1>
+        ვაკანსიები, რომლებიც შეიძლება საინტერესო იყოს თქვენთვის ან თქვენი
+        მეგობრებისთვის
+      </h1>
+    </header>
+    <div class="search_container">
+      <form>
+        <div class="input_box">
+          <div class="search_container_input">
+            <label for="search_info" class="searchinfo"
+              ><h3>რას ეძებთ?</h3></label
+            >
+            <input type="text" id="search_info" placeholder="მაგ: ბუღალტერი" />
+          </div>
+          <div class="search_container_input">
+            <label for="search_info" class="searchinfo"><h3>სად?</h3></label>
+            <select name="region" id="regionSelect" class="region_input">
+              <option value="region"></option>
+            </select>
+          </div>
+          <div class="button_container">
+            <a
+              class="button"
+              type="submit"
+              href="./search.html"
+              id="button_search"
+            >
+              მოძებნე</a
+            >
+
+            <a
+              id="button_every"
+              class="button"
+              role="button"
+              href="./fullVacancy.html"
+            >
+              ყველა ვაკანსია
+            </a>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="image_container">
+      <img src="./images/image_david.jpg" alt="" class="image_davit" />
+    </div>
+    <div id="container_category" class="container_category">
+      <div class="category_JS" onclick="vipFucntion()">
+        <div class="category_svg_JS">
+          <img src="./svg/vip.svg" alt="" class="" />
+        </div>
+        <div class="category_tex_JS">
+          <h3>vip ვაკანსიები</h3>
+        </div>
+      </div>
+    </div>
+
+    <div id="vip_vacancy_container" class="vip_vacancy_container"></div>
+
+    <div id="items"></div>
+
+    <footer>
+      <div class="footer_header">
+        <h4>
+          გამოიწერე, მიიღე ყველა ვაკანსიის შეტყობინება და დაეხმარე შენს
+          მეგობრებს დასაქმებაში.
+        </h4>
+      </div>
+      <div class="footer_gmail">
+        <form>
+          <div class="footer_input">
+            <input
+              type="gmail"
+              id="username"
+              name="username"
+              placeholder="ელ. ფოსტა"
+            />
+          </div>
+          <div class="button_container">
+            <button class="footer_button" role="button">გამოწერა</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="footer_socialmedia">
+        <div class="footer_image_box">
+          <img
+            src="./images/viber.png"
+            alt="viber"
+            href="#"
+            class="footer_image"
+            width="36px"
+          />
+        </div>
+        <div class="footer_image_box">
+          <img
+            src="./images/facebook.png"
+            alt="facebook"
+            class="footer_image"
+            width="36px"
+          />
+        </div>
+
+        <div class="footer_image_box">
+          <img
+            src="./images/tiktok.png"
+            alt="tik-tok"
+            class="footer_image"
+            width="36px"
+          />
+        </div>
+        <div class="footer_image_box">
+          <img
+            src="./images/instagram.png"
+            alt="instagram"
+            class="footer_image"
+            width="36px"
+          />
+        </div>
+        <div class="footer_image_box">
+          <img
+            src="./images/youtube.png"
+            alt="youtube"
+            class="footer_image"
+            width="36px"
+          />
+        </div>
+      </div>
+    </footer>
+    <script src="./scripts/app.js"></script>
+  </body>
+</html>
