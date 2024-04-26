@@ -27,6 +27,7 @@ pagesLength.forEach((pages) => {
   })
     .then((response) => response.json())
     .then((data) => {
+      actualData = data.vacancy.data;
       data.vacancy.data.forEach((element) => {
         if (element.fixed_amount === null) {
           element.fixed_amount = "თანხა დაზუსტებული არაა";

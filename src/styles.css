@@ -26,7 +26,7 @@ body {
   align-items: center;
   padding: 24px 16px;
   gap: 16px;
-  max-width: 1540px;
+  max-width: 1260px;
   width: 100%;
   flex-wrap: wrap;
 }
@@ -662,6 +662,11 @@ input[type="login"]:focus {
   }
   .mobile_container {
     display: block;
+  }
+  .input_box {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
   input[type="text"] {
     width: 200px;
