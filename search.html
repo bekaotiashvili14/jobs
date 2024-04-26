@@ -12,26 +12,33 @@
     <title>jobs</title>
     <link rel="stylesheet" href="./src/styles.css" />
   </head>
-  <body onload="loadFunction()">
+  <body>
     <nav class="nav_container">
-      <div class="topnav" id="topnav">
+      <div class="topnav">
         <a href="./index.html">
-          <img src="images/nav_image.png" alt="" width="346px" />
+          <img src="images/nav_image.png" alt="" class="image_nav" />
         </a>
         <div class="nav_text_container">
-          <a href="#news">ვაკანსიის განთავსება</a>
-          <a href="#contact"> აკადემია</a>
-          <a href="log_in.html" class="log_in">შესვლა</a>
+          <a href="">ვაკანსიის განთავსება</a>
+          <a href=""> აკადემია</a>
+          <a href="" id="log_in">შესვლა</a>
+        </div>
+        <div class="mobile_container">
+          <img
+            src="./svg/menu-button-of-three-horizontal-lines-svgrepo-com.svg"
+            alt=""
+            width="20px"
+            id="img_nav"
+          />
         </div>
       </div>
     </nav>
     <header>
-      <h1>
+      <h3>
         ვაკანსიები, რომლებიც შეიძლება საინტერესო იყოს თქვენთვის ან თქვენი
         მეგობრებისთვის
-      </h1>
+      </h3>
     </header>
-
     <div class="search_container">
       <form>
         <div class="input_box">
@@ -39,26 +46,29 @@
             <label for="search_info" class="searchinfo"
               ><h3>რას ეძებთ?</h3></label
             >
-            <input type="text" id="search_info" placeholder="მაგ: ბუღალტერი" />
+            <input
+              type="text"
+              id="search_info"
+              placeholder="პოზიცია, კომპანია"
+            />
           </div>
           <div class="search_container_input">
             <label for="search_info" class="searchinfo"><h3>სად?</h3></label>
-            <select name="region" id="regionSelect" class="region_input">
-              <option value="region"></option>
-            </select>
+            <select
+              name="region"
+              id="regionSelect"
+              class="region_input"
+            ></select>
           </div>
           <div class="button_container">
-            <button class="button" type="submit" id="button_search">
-              მოძებნე
-            </button>
-            <a
-              id="button_every"
+            <button
               class="button"
-              role="button"
-              href="./fullVacancy.html"
+              type="submit"
+              onclick="search()"
+              id="button_search"
             >
-              ყველა ვაკანსია
-            </a>
+              ძებნა
+            </button>
           </div>
         </div>
       </form>
@@ -67,7 +77,14 @@
       <img src="./images/image_david.jpg" alt="" class="image_davit" />
     </div>
     <div id="container_search" class="container_search"></div>
-    <div id="container_search"></div>
+    <button
+      id="button_every"
+      class="button"
+      role="button"
+      onclick="goFullVacancyPage()"
+    >
+      ყველა ვაკანსია
+    </button>
     <footer>
       <div class="footer_header">
         <h4>

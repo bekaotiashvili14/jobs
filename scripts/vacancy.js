@@ -13,7 +13,7 @@ fetch(_apiFiveVip, {
     let firstThreevacancy = document.getElementById(
       "container_vip_vacancy_for_vacancy"
     );
-    data.vacancy.data.slice(0, 5).forEach((vip) => {
+    data.vacancy.data.slice(0, 4).forEach((vip) => {
       if (vip.fixed_amount === null) {
         vip.fixed_amount = "თანხა დაზუსტებული არაა";
       }
@@ -61,3 +61,60 @@ fetch(_apiFiveVip, {
   .catch((error) => {
     console.error("Error fetching data:", error);
   });
+
+let FindData = JSON.parse(sessionStorage.getItem("findVacancy"));
+console.log(FindData);
+if (FindData.avarage_min_bonus || FindData.avarage_max_bonus === null) {
+  FindData.avarage_max_bonus = "";
+  FindData.avarage_min_bonus = "თანხა დაზუსტებული არაა";
+}
+
+if (FindData.additional_info === null) {
+  FindData.additional_info = "";
+}
+let containervacancy = document.getElementById("container_vacancy_for_vacancy");
+let HTML = `
+  <div class="vacancy_info_img_text">
+    <img src="${FindData.CompanyDetail.logo}" alt="" width = "120px" height = "100px" class= "img_info_vacancy"/>
+    <div class="vacancy_info_text">
+      <h3>${FindData.position.name}</h3>
+      <h5>${FindData.IndustryDetail.text}</h5>
+      <h4>${FindData.CompanyDetail.brandname}</h4>
+    </div>
+  </div>
+  <div class="info_for_vacancy">
+    <span>
+    <h3>სამუშაო გრაფიკი</h3>
+    <h4>${FindData.WorkScheduleList.text}</h4>
+    </span>
+      <span>
+    <h3>გამოცდილება</h3>
+    <h4>${FindData.IndustryDetail.text}</h4>
+    </span>
+      <span>
+    <h3>ანაზღაურება</h3>
+    <h4>${FindData.fixed_amount}</h4>
+    </span>
+      <span>
+    <h3>საშუალო ბონუსი</h3>
+    <h4>${FindData.avarage_min_bonus} ${FindData.avarage_max_bonus}</h4>
+    </span>
+  </div>
+  <div class="fullInfo_for_vacancy">
+    <div class="fullInfo_for_vacancy_text">
+    <h2>რა უნდა გააკეთო?</h2>
+      <h3>
+      ${FindData.what_to_do}
+      </h3>
+        <h2>დამატებითი ინფორმაცია</h2>
+   <h3>
+      ${FindData.VacancyReasonList}
+      </h3>
+      <h3>
+       ${FindData.additional_info}
+      </h3>
+    </div>
+  </div>
+
+`;
+containervacancy.innerHTML += HTML;

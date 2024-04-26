@@ -8,9 +8,10 @@ function fetchPage(page) {
   })
     .then((response) => response.json())
     .then((data) => {
+      let fullInfo = document.getElementById("fullInfo");
       fullInfo.innerHTML = "";
+      actualData = data.vacancy.data;
       data.vacancy.data.forEach((vip) => {
-        let fullInfo = document.getElementById("fullInfo");
         if (vip.fixed_amount === null) {
           vip.fixed_amount = "თანხა დაზუსტებული არაა";
         }
@@ -19,7 +20,7 @@ function fetchPage(page) {
         }
 
         let HTML = `
-          <div class="vip_vacancy_container_JS">
+          <div class="vip_vacancy_container_JS"  onclick="vacancy(${vip.id})">
             <div class="vip_vacancy_image__text__box_JS">
               <div class="vip_vacancy_image_JS">
                 <a href="./vacancy.html"><img src="${vip.CompanyDetail.logo}" alt="" width="80px" /></a>
@@ -57,7 +58,6 @@ function fetchPage(page) {
     });
 }
 
-// Initial fetch
 fetchPage(currentPage);
 
 // Pagination
@@ -75,28 +75,8 @@ document.getElementById("prevPage").addEventListener("click", () => {
   }
 });
 
-function regionSearch(id) {
-  const regionSelect = document.getElementById("regionSelect");
-  let regionValue = document.getElementById("regionSelect").value;
-
-  const _region = `https://recruting.dkcapital.ge/api/public/vacancy/LoadRegion`;
-  fetch(_region, {
-    method: "GET",
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      data.forEach((element) => {
-        regionSelect.innerHTML += `
-     <form action="">
-     <select name="text" class="region_input">
-      <option value="region">${element.text}</option>
-     </select>
-     </form>
-
-          `;
-      });
-    });
-
-  return regionValue;
+function vacancy(id) {
+  let objSave = actualData.find((item) => item.id === id);
+  sessionStorage.setItem("findVacancy", JSON.stringify(objSave));
+  window.location.href = "vacancy.html";
 }
-regionSearch();

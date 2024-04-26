@@ -11,6 +11,7 @@ function vipFucntion() {
       let vipContainer = document.getElementById("vip_vacancy_container");
       vipContainer.innerHTML = "";
       items.innerHTML = "";
+      actualData = data.vacancy.data;
       data.vacancy.data.forEach((vip) => {
         if (vip.fixed_amount === null) {
           vip.fixed_amount = "თანხა დაზუსტებული არაა";
@@ -20,7 +21,7 @@ function vipFucntion() {
         }
 
         let HTML = `
-  <div class="vip_vacancy_container_JS" >
+  <div class="vip_vacancy_container_JS" onclick="vacancy(${vip.id})">
     <div class="vip_vacancy_image__text__box_JS">
       <div class="vip_vacancy_image_JS">
       <a href="./vacancy.html"><img src="${vip.CompanyDetail.logo}" alt=""  width = "80px" />  </a>
@@ -66,6 +67,7 @@ function vipFucntion() {
 function clickButton(d, b) {
   let vipContainer = document.getElementById("vip_vacancy_container");
   vipContainer.innerHTML = "";
+  let items = document.getElementById("items");
   items.innerHTML = "";
   let _apiCategory = `https://recruting.dkcapital.ge/api/public/vacancy/v2/search?page=undefined&id=${d}&type=${b}`;
 
@@ -74,6 +76,8 @@ function clickButton(d, b) {
   })
     .then((response) => response.json())
     .then((data) => {
+      actualData = data.vacancy.data;
+
       let items = document.getElementById("items");
       items.innerHTML = "";
 
@@ -86,7 +90,7 @@ function clickButton(d, b) {
         }
 
         let HTML = `
-          <div class="vip_vacancy_container_JS">
+          <div class="vip_vacancy_container_JS"  onclick="vacancy(${vip.id})">
             <div class="vip_vacancy_image__text__box_JS">
               <div class="vip_vacancy_image_JS">
                 <img src="${vip.CompanyDetail.logo}" alt="" width="80px" />
@@ -121,7 +125,12 @@ function clickButton(d, b) {
       });
     });
 }
-
+let actualData;
+function vacancy(id) {
+  let objSave = actualData.find((item) => item.id === id);
+  sessionStorage.setItem("findVacancy", JSON.stringify(objSave));
+  window.location.href = "vacancy.html";
+}
 // category container fetch
 let _apiCategory = "https://recruting.dkcapital.ge/api/public/categories";
 fetch(_apiCategory, {
@@ -150,28 +159,43 @@ fetch(_apiCategory, {
     });
   });
 
-function regionSearch() {
-  const regionSelect = document.getElementById("regionSelect");
-  let regionValue = document.getElementById("regionSelect").value;
+//////////////////////////////
+function search() {
+  let regionSelect = document.getElementById("regionSelect").value;
+  let search_info = document.getElementById("search_info").value;
+  sessionStorage.setItem("regionSelect", JSON.stringify(regionSelect));
+  sessionStorage.setItem("search_info", JSON.stringify(search_info));
+  window.location.href = "search.html";
+}
 
-  const _region = `https://recruting.dkcapital.ge/api/public/vacancy/LoadRegion`;
-  fetch(_region, {
+function populateRegionSelect() {
+  const regionSelect = document.getElementById("regionSelect");
+  const regionUrl = `https://recruting.dkcapital.ge/api/public/vacancy/LoadRegion`;
+  fetch(regionUrl, {
     method: "GET",
   })
     .then((response) => response.json())
     .then((data) => {
       data.forEach((element) => {
         regionSelect.innerHTML += `
-     <form action="">
-     <select name="text" class="region_input">
-      <option value="region">${element.text}</option>
-     </select>
-     </form>
-
-          `;
+          <option value="${element.id}">${element.text}</option>
+        `;
       });
+    })
+    .catch((error) => {
+      console.error("Error fetching regions:", error);
     });
-
-  return regionValue;
 }
-regionSearch();
+
+populateRegionSelect();
+
+const form = document.querySelector("form");
+form.addEventListener("submit", function (event) {
+  event.preventDefault();
+  const regionValue = document.getElementById("regionSelect").value;
+  search(regionValue);
+});
+
+function goFullVacancyPage() {
+  window.location.href = "fullVacancy.html";
+}
