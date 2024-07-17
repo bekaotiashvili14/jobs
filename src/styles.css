@@ -108,6 +108,12 @@ input[type="text"]:focus {
   border-color: #b2b5b8;
   background-color: #d1d0d0;
 }
+.region_input:focus {
+  outline: none;
+  border-color: #b2b5b8;
+  background-color: #d1d0d0;
+}
+
 .region_input {
   width: 360px;
   padding: 18px 24px;
@@ -657,6 +663,12 @@ input[type="login"]:focus {
   padding: 10px;
   border-radius: 10px;
 }
+.category_svg_image {
+  width: 90px;
+}
+.region_input {
+  width: 36+0px;
+}
 @media (max-width: 768px) {
   .nav_text_container {
     display: none;
@@ -678,7 +690,6 @@ input[type="login"]:focus {
   .region_input {
     width: 200px;
     padding: 14px 20px;
-    border-radius: 1px;
     font-size: 14px;
   }
   #button_every {
